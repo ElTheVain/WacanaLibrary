@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="id.ac.ukdw.rplbo.wacanalibrary.controllers.RegisterController"
+      spacing="0"
+      prefWidth="420"
+      style="-fx-background-color: white;">
+
+    <!-- Header -->
+    <VBox alignment="CENTER" spacing="6"
+          style="-fx-background-color: #1B2A4A; -fx-padding: 28 32 24 32;">
+        <Label text="📚" style="-fx-font-size: 28;"/>
+        <Label text="Daftar Anggota Baru"
+               style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: white;"/>
+        <Label text="Buat akun untuk mulai meminjam buku"
+               style="-fx-font-size: 12; -fx-text-fill: #94A3B8;"/>
+    </VBox>
+
+    <!-- Form -->
+    <VBox spacing="14" style="-fx-padding: 28 32 24 32;">
+
+        <!-- Nama Lengkap -->
+        <VBox spacing="5">
+            <Label text="NAMA LENGKAP"
+                   style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #64748B;"/>
+            <TextField fx:id="txtNama" promptText="Masukkan nama lengkap..."
+                       style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0;
+                              -fx-border-radius: 6; -fx-background-radius: 6;
+                              -fx-font-size: 13; -fx-padding: 10 12;"/>
+        </VBox>
+
+        <!-- ID Anggota (auto-generate hint) -->
+        <VBox spacing="5">
+            <Label text="ID ANGGOTA (otomatis)"
+                   style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #64748B;"/>
+            <TextField fx:id="txtIdAnggota" promptText="Dibuat otomatis..."
+                       editable="false"
+                       style="-fx-background-color: #F1F5F9; -fx-border-color: #E2E8F0;
+                              -fx-border-radius: 6; -fx-background-radius: 6;
+                              -fx-font-size: 13; -fx-padding: 10 12; -fx-text-fill: #94A3B8;"/>
+        </VBox>
+
+        <!-- Tipe Anggota -->
+        <VBox spacing="5">
+            <Label text="TIPE ANGGOTA"
+                   style="-fx-font-size: 10; -fx-font-weight: bold; -fx-text-fill: #64748B;"/>
+            <ComboBox fx:id="cbTipe" maxWidth="Infinity" promptText="Pilih tipe anggota..."
+                      style="-fx-background-color: #F8FAFC; -fx-border-color: #E2E8F0;
+                             -fx-border-radius: 6; -fx-background-radius: 6;
+                             -fx-font-size: 13; -fx-padding: 4 0;"/>
+        </VBox>
+
+        <!-- Error Label -->
+        <Label fx:id="lblError"
+               style="-fx-text-fill: #DC2626; -fx-font-size: 12;
+                      -fx-background-color: #FEF2F2; -fx-background-radius: 6;
+                      -fx-padding: 8 12; -fx-wrap-text: true;"
+               visible="false" managed="false" wrapText="true" maxWidth="Infinity"/>
+
+        <!-- Success Label -->
+        <Label fx:id="lblSuccess"
+               style="-fx-text-fill: #15803D; -fx-font-size: 12;
+                      -fx-background-color: #F0FDF4; -fx-background-radius: 6;
+                      -fx-padding: 8 12; -fx-wrap-text: true;"
+               visible="false" managed="false" wrapText="true" maxWidth="Infinity"/>
+
+        <!-- Buttons -->
+        <VBox spacing="10">
+            <VBox.margin><Insets top="6"/></VBox.margin>
+            <Button text="Daftar Sekarang" onAction="#handleDaftar"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #185FA5;
+                           -fx-text-fill: white;
+                           -fx-font-size: 14;
+                           -fx-font-weight: bold;
+                           -fx-background-radius: 8;
+                           -fx-padding: 12;
+                           -fx-cursor: hand;"/>
+            <Button text="Sudah punya akun? Masuk di sini" onAction="#handleKeLogin"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: #185FA5;
+                           -fx-font-size: 12;
+                           -fx-cursor: hand;
+                           -fx-border-color: transparent;
+                           -fx-padding: 6;"/>
+        </VBox>
+    </VBox>
+
+</VBox>

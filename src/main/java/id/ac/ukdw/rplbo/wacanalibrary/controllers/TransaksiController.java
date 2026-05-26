@@ -81,17 +81,17 @@ public class TransaksiController {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
-            while (rs.next()) {
-                transaksiList.add(new Transaksi(
-                        rs.getString("idTransaksi"),
-                        rs.getString("idAnggota"),
-                        rs.getString("idBuku")  == null ? "-" : rs.getString("idBuku"),
-                        LocalDate.parse(rs.getString("tanggalPinjam")),
-                        LocalDate.parse(rs.getString("tanggalJatuhTempo")),
-                        rs.getString("statusTransaksi"),
-                        rs.getString("metodePembayaran") == null ? "-" : rs.getString("metodePembayaran")
-                ));
-            }
+//            while (rs.next()) {
+//                transaksiList.add(new Transaksi(
+//                        rs.getString("idTransaksi"),
+//                        rs.getString("idAnggota"),
+//                        rs.getString("idBuku")  == null ? "-" : rs.getString("idBuku"),
+//                        LocalDate.parse(rs.getString("tanggalPinjam")),
+//                        LocalDate.parse(rs.getString("tanggalJatuhTempo")),
+//                        rs.getString("statusTransaksi"),
+//                        rs.getString("metodePembayaran") == null ? "-" : rs.getString("metodePembayaran")
+//                ));
+//            }
         } catch (Exception e) { // <-- PERBAIKAN: Blok catch dan penutup yang sebelumnya hilang ditambahkan di sini
             e.printStackTrace();
         }

@@ -15,7 +15,7 @@ public class Main extends Application {
         DatabaseHelper.initializeDatabase();
 
         // Mengubah awal mulai ke layar Login
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/Login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/fxml/Homepage.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         stage.setTitle("Wacana Library - Login Sistem");
