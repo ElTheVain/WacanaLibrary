@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="20.0" style="-fx-background-color: #F4F6F8; -fx-padding: 30;"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="id.ac.ukdw.rplbo.wacanalibrary.controllers.AnggotaDashboardController">
+
+    <VBox spacing="4.0">
+        <Label fx:id="lblSalam" text="Selamat Datang!" textFill="#1B2A4A">
+            <font><Font name="System Bold" size="24.0"/></font>
+        </Label>
+        <Label fx:id="lblTanggal" text="" textFill="#78909C">
+            <font><Font size="13.0"/></font>
+        </Label>
+    </VBox>
+
+    <HBox spacing="20.0">
+        <VBox spacing="8.0" HBox.hgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 8, 0, 0, 3); -fx-padding: 20;">
+            <Label text="📚 Buku Dipinjam" textFill="#546E7A"><font><Font size="13.0"/></font></Label>
+            <Label fx:id="lblJumlahPinjam" text="0" textFill="#1B2A4A"><font><Font name="System Bold" size="36.0"/></font></Label>
+            <Label text="buku sedang dipinjam" textFill="#90A4AE"><font><Font size="11.0"/></font></Label>
+        </VBox>
+
+        <VBox spacing="8.0" HBox.hgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 8, 0, 0, 3); -fx-padding: 20;">
+            <Label text="⏰ Keterlambatan" textFill="#546E7A"><font><Font size="13.0"/></font></Label>
+            <Label fx:id="lblStatusTerlambat" text="0" textFill="#E53935"><font><Font name="System Bold" size="36.0"/></font></Label>
+            <Label text="buku melewati jatuh tempo" textFill="#90A4AE"><font><Font size="11.0"/></font></Label>
+        </VBox>
+
+        <VBox spacing="8.0" HBox.hgrow="ALWAYS"
+              style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 8, 0, 0, 3); -fx-padding: 20;">
+            <Label text="💰 Total Denda" textFill="#546E7A"><font><Font size="13.0"/></font></Label>
+            <Label fx:id="lblTotalDenda" text="Rp 0" textFill="#F57C00"><font><Font name="System Bold" size="28.0"/></font></Label>
+            <Label text="akumulasi denda belum dibayar" textFill="#90A4AE"><font><Font size="11.0"/></font></Label>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="10.0" VBox.vgrow="ALWAYS"
+          style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 8, 0, 0, 3); -fx-padding: 20;">
+        <Label text="Pinjaman Aktif Saat Ini" textFill="#1B2A4A">
+            <font><Font name="System Bold" size="15.0"/></font>
+        </Label>
+        <TableView fx:id="tabelPinjamanAktif" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colIdTransaksi"  prefWidth="120.0" text="ID Transaksi"/>
+                <TableColumn fx:id="colJudulBuku"    prefWidth="250.0" text="Judul Buku"/>
+                <TableColumn fx:id="colTglPinjam"    prefWidth="130.0" text="Tgl Pinjam"/>
+                <TableColumn fx:id="colJatuhTempo"   prefWidth="130.0" text="Jatuh Tempo"/>
+                <TableColumn fx:id="colStatusPinjam" prefWidth="120.0" text="Status"/>
+            </columns>
+            <placeholder>
+                <Label text="Tidak ada pinjaman aktif saat ini." textFill="#90A4AE"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+
+</VBox>

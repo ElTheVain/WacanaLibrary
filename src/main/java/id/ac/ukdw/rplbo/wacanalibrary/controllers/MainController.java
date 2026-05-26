@@ -16,10 +16,10 @@ public class MainController {
     @FXML private StackPane contentArea;
     @FXML private Button btnDashboard, btnAnggota, btnKatalog, btnTransaksi, btnLaporan, btnKeluar;
 
-    // Simpan style default dan style aktif
-    private final String IDLE_STYLE = "-fx-background-color: transparent; -fx-text-fill: black; -fx-padding: 10;";
-    private final String ACTIVE_STYLE = "-fx-background-color: #E3F2FD; -fx-text-fill: #1976D2; -fx-background-radius: 5; -fx-padding: 10;";
-
+    private final String IDLE_STYLE =
+            "-fx-background-color: transparent; -fx-text-fill: #B0BEC5; -fx-background-radius: 6; -fx-padding: 12 15;";
+    private final String ACTIVE_STYLE =
+            "-fx-background-color: #2E4070; -fx-text-fill: white; -fx-background-radius: 6; -fx-padding: 12 15;";
     @FXML
     public void initialize() {
         // Menampilkan Dashboard sebagai halaman default saat login berhasil

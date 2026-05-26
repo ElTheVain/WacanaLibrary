@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #F4F6F8;" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.ac.ukdw.rplbo.wacanalibrary.controllers.LoginController">
-    <padding>
-        <Insets bottom="40.0" left="60.0" right="60.0" top="40.0" />
-    </padding>
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="id.ac.ukdw.rplbo.wacanalibrary.controllers.LoginController"
+      alignment="CENTER" spacing="20" style="-fx-padding: 40;">
 
-    <VBox alignment="CENTER" spacing="5.0">
-        <Label text="Wacana Library" textFill="#2c3e50">
-            <font>
-                <Font name="System Bold" size="28.0" />
-            </font>
-        </Label>
-        <Label text="Silakan masuk ke akun operator Anda" textFill="#7f8c8d" />
+    <Label text="Wacana Library" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+    <Label text="Sistem Manajemen Perpustakaan" style="-fx-font-size: 14;"/>
+
+    <Separator/>
+
+    <!-- Form Login Admin -->
+    <VBox spacing="10" maxWidth="300">
+        <TextField fx:id="txtUsername" promptText="Username Admin"/>
+        <PasswordField fx:id="txtPassword" promptText="Password"/>
+        <Button text="Login sebagai Admin" onAction="#handleLoginAdmin"
+                maxWidth="Infinity"
+                style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
     </VBox>
 
-    <VBox spacing="15.0" style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);">
-        <Label fx:id="lblError" textFill="#e74c3c" visible="false" managed="false"/>
+    <Label fx:id="lblError" style="-fx-text-fill: red;"
+           visible="false" managed="false"/>
 
-        <VBox spacing="5.0">
-            <Label text="Username" textFill="#34495e" />
-            <TextField fx:id="txtUsername" promptText="Masukkan username..." style="-fx-padding: 8; -fx-background-radius: 4;" />
-        </VBox>
+    <Separator/>
 
-        <VBox spacing="5.0">
-            <Label text="Password" textFill="#34495e" />
-            <PasswordField fx:id="txtPassword" promptText="Masukkan password..." style="-fx-padding: 8; -fx-background-radius: 4;" />
-        </VBox>
-
-        <Button fx:id="btnLogin" maxWidth="Infinity" style="-fx-background-color: #0056b3; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10; -fx-background-radius: 4;" text="Masuk ke Sistem" onAction="#handleLogin" />
+    <!-- Tombol langsung masuk sebagai Anggota -->
+    <VBox spacing="6" alignment="CENTER">
+        <Label text="Kamu seorang anggota perpustakaan?"/>
+        <Button text="Masuk sebagai Anggota" onAction="#handleMasukAnggota"
+                maxWidth="300"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
     </VBox>
+
 </VBox>

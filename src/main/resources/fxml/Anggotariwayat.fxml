@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" style="-fx-background-color: #F4F6F8; -fx-padding: 20;"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="id.ac.ukdw.rplbo.wacanalibrary.controllers.Anggotariwayatcontroller">
+
+    <!-- HEADER -->
+    <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <Label text="📋 Riwayat Pinjaman" textFill="#1B2A4A">
+            <font><Font name="System Bold" size="20.0"/></font>
+        </Label>
+        <Region HBox.hgrow="ALWAYS"/>
+        <!-- Filter Status -->
+        <ComboBox fx:id="filterStatus" promptText="Semua Status"
+                  onAction="#handleFilter"
+                  style="-fx-background-radius: 6;"/>
+    </HBox>
+
+    <!-- TABEL RIWAYAT -->
+    <TableView fx:id="tabelRiwayat" VBox.vgrow="ALWAYS"
+               style="-fx-background-color: white; -fx-background-radius: 10;
+                      -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 8, 0, 0, 3);">
+        <columns>
+            <TableColumn fx:id="colIdTransaksi"  prefWidth="120.0" text="ID TRANSAKSI"/>
+            <TableColumn fx:id="colJudulBuku"    prefWidth="220.0" text="JUDUL BUKU"/>
+            <TableColumn fx:id="colTglPinjam"    prefWidth="120.0" text="TGL PINJAM"/>
+            <TableColumn fx:id="colJatuhTempo"   prefWidth="120.0" text="JATUH TEMPO"/>
+            <TableColumn fx:id="colTglKembali"   prefWidth="120.0" text="TGL KEMBALI"/>
+            <TableColumn fx:id="colDenda"        prefWidth="100.0" text="DENDA"/>
+            <TableColumn fx:id="colStatusTrx"    prefWidth="120.0" text="STATUS"/>
+        </columns>
+        <placeholder>
+            <Label text="Belum ada riwayat peminjaman." textFill="#90A4AE"/>
+        </placeholder>
+    </TableView>
+
+</VBox>

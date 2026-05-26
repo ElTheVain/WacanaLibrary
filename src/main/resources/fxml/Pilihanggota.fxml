@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" style="-fx-padding: 25; -fx-background-color: white;"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="id.ac.ukdw.rplbo.wacanalibrary.controllers.PilihAnggotaController">
+
+    <Label text="Pilih Akun Anggota" textFill="#1B2A4A">
+        <font><Font name="System Bold" size="16.0"/></font>
+    </Label>
+    <Label text="Pilih nama kamu dari daftar di bawah ini:" textFill="#78909C">
+        <font><Font size="12.0"/></font>
+    </Label>
+
+    <ComboBox fx:id="cbAnggota" maxWidth="Infinity" promptText="-- Pilih Nama Anggota --"/>
+
+    <Label fx:id="lblError" textFill="red" visible="false" managed="false"/>
+
+    <HBox spacing="10.0">
+        <Button text="Masuk" onAction="#handleMasuk"
+                style="-fx-background-color: #1B2A4A; -fx-text-fill: white; -fx-background-radius: 6; -fx-padding: 8 20;"/>
+        <Button text="Batal" onAction="#handleBatal"
+                style="-fx-background-color: #ECEFF1; -fx-background-radius: 6; -fx-padding: 8 20;"/>
+    </HBox>
+
+</VBox>

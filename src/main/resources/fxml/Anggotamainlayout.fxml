@@ -8,7 +8,7 @@
 <BorderPane prefHeight="700.0" prefWidth="1200.0"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="id.ac.ukdw.rplbo.wacanalibrary.controllers.MainController">
+            fx:controller="id.ac.ukdw.rplbo.wacanalibrary.controllers.Anggotamaincontroller">
 
     <!-- SIDEBAR KIRI -->
     <left>
@@ -24,7 +24,7 @@
                 <font><Font name="System Bold" size="16.0"/></font>
                 <VBox.margin><Insets bottom="5.0"/></VBox.margin>
             </Label>
-            <Label text="Dashboard Operasional" textFill="#90CAF9">
+            <Label fx:id="lblNamaAnggota" text="Halo, Anggota!" textFill="#90CAF9">
                 <font><Font size="12.0"/></font>
                 <VBox.margin><Insets bottom="25.0"/></VBox.margin>
             </Label>
@@ -38,21 +38,13 @@
                     style="-fx-background-color: #2E4070; -fx-text-fill: white; -fx-background-radius: 6; -fx-padding: 12 15;"
                     text="🏠  Dashboard" onAction="#showDashboard"/>
 
-            <Button fx:id="btnAnggota" maxWidth="Infinity" alignment="BASELINE_LEFT"
-                    style="-fx-background-color: transparent; -fx-text-fill: #B0BEC5; -fx-background-radius: 6; -fx-padding: 12 15;"
-                    text="👥  Anggota" onAction="#showAnggota"/>
-
             <Button fx:id="btnKatalog" maxWidth="Infinity" alignment="BASELINE_LEFT"
                     style="-fx-background-color: transparent; -fx-text-fill: #B0BEC5; -fx-background-radius: 6; -fx-padding: 12 15;"
                     text="📖  Katalog Buku" onAction="#showKatalog"/>
 
-            <Button fx:id="btnTransaksi" maxWidth="Infinity" alignment="BASELINE_LEFT"
+            <Button fx:id="btnRiwayat" maxWidth="Infinity" alignment="BASELINE_LEFT"
                     style="-fx-background-color: transparent; -fx-text-fill: #B0BEC5; -fx-background-radius: 6; -fx-padding: 12 15;"
-                    text="🔄  Transaksi" onAction="#showTransaksi"/>
-
-            <Button fx:id="btnLaporan" maxWidth="Infinity" alignment="BASELINE_LEFT"
-                    style="-fx-background-color: transparent; -fx-text-fill: #B0BEC5; -fx-background-radius: 6; -fx-padding: 12 15;"
-                    text="📊  Laporan" onAction="#showLaporan"/>
+                    text="📋  Riwayat Pinjaman" onAction="#showRiwayat"/>
 
             <Region VBox.vgrow="ALWAYS"/>
 
@@ -62,7 +54,7 @@
 
             <Button fx:id="btnKeluar" maxWidth="Infinity" alignment="BASELINE_LEFT"
                     style="-fx-text-fill: #EF9A9A; -fx-background-color: transparent; -fx-padding: 12 15;"
-                    text="🚪  Keluar Sistem" onAction="#handleLogout"/>
+                    text="🚪  Keluar" onAction="#handleKeluar"/>
         </VBox>
     </left>
 
