@@ -11,7 +11,6 @@ public class Pegawai {
         this.role = role;
     }
 
-    // Getters
     public String getIdPegawai() { return idPegawai; }
     public String getUsername() { return username; }
     public String getRole() { return role; }

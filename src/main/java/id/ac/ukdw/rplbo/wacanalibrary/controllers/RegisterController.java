@@ -66,7 +66,6 @@ public class RegisterController {
     private void handleDaftar() {
         String nama = txtNama.getText().trim();
         String nim = txtNim.getText().trim();
-        // Ambil password yang aktif
         String pass = txtPasswordHidden.isVisible() ? txtPasswordHidden.getText() : txtPasswordVisible.getText();
         String id = txtIdAnggota.getText().trim();
         String tipe = cbTipe.getValue();
@@ -81,7 +80,6 @@ public class RegisterController {
         int batasPinjam = switch (tipe) { case "Dosen" -> 10; case "Staff" -> 7; case "Umum" -> 3; default -> 5; };
         String tanggal = LocalDate.now().toString();
 
-        // Query INSERT disesuaikan (tanpa kolom username)
         String query = "INSERT INTO Anggota (idAnggota, nim, namaLengkap, password, tipe, batasPinjam, aktifSejak, status) VALUES (?, ?, ?, ?, ?, ?, ?, 'Aktif')";
 
         try (Connection conn = DatabaseHelper.getConnection();

@@ -24,8 +24,6 @@ public class KatalogController {
 
     @FXML private TextField searchField;
     @FXML private TableView<Buku> tabelBuku;
-
-    // TAMBAHAN: Kolom Gambar
     @FXML private TableColumn<Buku, String> colGambar;
     @FXML private TableColumn<Buku, Void> colOperasi;
     @FXML private TableColumn<Buku, String> colId, colIsbn, colJudul, colPengarang, colKategori, colStatus;
@@ -36,15 +34,16 @@ public class KatalogController {
     @FXML
     public void initialize() {
         colId.setCellValueFactory(cellData -> cellData.getValue().idBukuProperty());
+
         if(colIsbn != null) colIsbn.setCellValueFactory(cellData -> cellData.getValue().isbnProperty());
         colJudul.setCellValueFactory(cellData -> cellData.getValue().judulProperty());
         colPengarang.setCellValueFactory(cellData -> cellData.getValue().pengarangProperty());
         colKategori.setCellValueFactory(cellData -> cellData.getValue().kategoriProperty());
         colTahun.setCellValueFactory(cellData -> cellData.getValue().tahunTerbitProperty());
+
         if(colHalaman != null) colHalaman.setCellValueFactory(cellData -> cellData.getValue().halamanProperty());
         colStatus.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
 
-        // RENDER GAMBAR KE DALAM TABEL
         if(colGambar != null) {
             colGambar.setCellValueFactory(cellData -> cellData.getValue().gambarProperty());
             colGambar.setCellFactory(column -> new TableCell<Buku, String>() {
@@ -52,7 +51,6 @@ public class KatalogController {
                 {
                     imageView.setFitWidth(40);
                     imageView.setFitHeight(60);
-                    // Agar gambar rapi di dalam sel tanpa gepeng
                     imageView.setPreserveRatio(true);
                 }
 
@@ -74,7 +72,7 @@ public class KatalogController {
             });
         }
 
-        // Peringatan Warna Status
+        // Warna Status Buku
         tabelBuku.setRowFactory(tv -> new TableRow<Buku>() {
             @Override
             protected void updateItem(Buku item, boolean empty) {
@@ -87,7 +85,6 @@ public class KatalogController {
             }
         });
 
-        // Disable visual selection highlight and clear selection
         tabelBuku.setStyle("-fx-selection-bar: transparent; -fx-selection-bar-text: -fx-text-background-color;");
         tabelBuku.getSelectionModel().selectedIndexProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal.intValue() != -1) {

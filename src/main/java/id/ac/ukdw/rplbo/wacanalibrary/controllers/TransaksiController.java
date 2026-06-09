@@ -26,7 +26,6 @@ public class TransaksiController {
 
     private ObservableList<Transaksi> transaksiList = FXCollections.observableArrayList();
 
-    // 1. Instansiasi DAO di level class
     private final TransaksiDao transaksiDao = new TransaksiDaoImpl();
 
     @FXML
@@ -48,16 +47,16 @@ public class TransaksiController {
                 } else {
                     String status = item.getStatusTransaksi();
                     if (status.equalsIgnoreCase("Terlambat")) {
-                        setStyle("-fx-background-color: #ffcccc;"); // Merah
+                        setStyle("-fx-background-color: #ffcccc;");
                     } else if (status.equalsIgnoreCase("Selesai")) {
-                        setStyle("-fx-background-color: #d4edda;"); // Hijau
+                        setStyle("-fx-background-color: #d4edda;");
                     } else if (status.equalsIgnoreCase("Berjalan")) {
                         String tglJatuhTempoStr = item.getTanggalJatuhTempo();
                         try {
                             if (tglJatuhTempoStr != null && !tglJatuhTempoStr.isEmpty() && !tglJatuhTempoStr.equals("-")) {
                                 LocalDate jt = LocalDate.parse(tglJatuhTempoStr);
                                 if (jt.isBefore(LocalDate.now())) {
-                                    setStyle("-fx-background-color: #ffeeba;"); // Kuning
+                                    setStyle("-fx-background-color: #ffeeba;");
                                 } else {
                                     setStyle("");
                                 }
@@ -68,7 +67,6 @@ public class TransaksiController {
             }
         });
 
-        // Disable visual selection highlight and clear selection
         tabelTransaksi.setStyle("-fx-selection-bar: transparent; -fx-selection-bar-text: -fx-text-background-color;");
         tabelTransaksi.getSelectionModel().selectedIndexProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal.intValue() != -1) {
@@ -82,7 +80,6 @@ public class TransaksiController {
     }
 
     private void loadData() {
-        // 2. Ganti blok SQL dengan pemanggilan DAO (Sangat bersih!)
         transaksiList.clear();
         transaksiList.addAll(transaksiDao.getAllTransaksi());
     }
@@ -152,7 +149,7 @@ public class TransaksiController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root));
             stage.showAndWait();
-            loadData(); // Memanggil DAO lagi secara otomatis
+            loadData();
         } catch (Exception e) { e.printStackTrace(); }
     }
 

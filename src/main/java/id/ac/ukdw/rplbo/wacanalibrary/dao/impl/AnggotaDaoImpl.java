@@ -39,7 +39,6 @@ public class AnggotaDaoImpl implements AnggotaDao {
 
     @Override
     public void tambahAnggota(Anggota anggota) {
-        // Kolom username disertakan karena ada di skema DB, diambil dari nimProperty sebagai fallback
         String query = "INSERT INTO Anggota (idAnggota, nim, username, namaLengkap, tipe, batasPinjam, aktifSejak, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseHelper.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
@@ -107,7 +106,6 @@ public class AnggotaDaoImpl implements AnggotaDao {
     }
 
     private Anggota mapResultSetToAnggota(ResultSet rs) throws SQLException {
-        // Konstruktor Anggota: (id, nim, nama, tipe, batas, aktifSejak, status) — 7 parameter
         return new Anggota(
                 rs.getString("idAnggota"),
                 rs.getString("nim"),

@@ -27,14 +27,14 @@ public class MainController {
     }
 
     private void setActiveButton(Button activeButton) {
-        // Reset semua tombol ke style default
+        // Style default
         btnDashboard.setStyle(IDLE_STYLE);
         btnAnggota.setStyle(IDLE_STYLE);
         btnKatalog.setStyle(IDLE_STYLE);
         btnTransaksi.setStyle(IDLE_STYLE);
         btnLaporan.setStyle(IDLE_STYLE);
 
-        // Beri style aktif ke tombol yang diklik
+        // Style aktif ke tombol yang diklik
         activeButton.setStyle(ACTIVE_STYLE);
     }
 
@@ -59,19 +59,18 @@ public class MainController {
     @FXML
     private void showTransaksi() {
         setActiveButton(btnTransaksi);
-        loadView("/fxml/Transaksi.fxml"); // Hapus tanda komentar di baris ini
+        loadView("/fxml/Transaksi.fxml");
     }
 
     @FXML
     private void showLaporan() {
         setActiveButton(btnLaporan);
-        loadView("/fxml/Laporan.fxml"); // Hapus tanda komentar di baris ini
+        loadView("/fxml/Laporan.fxml");
     }
 
     @FXML
     private void handleLogout() {
         try {
-            // Tutup stage utama
             Stage stage = (Stage) btnKeluar.getScene().getWindow();
             stage.close();
 

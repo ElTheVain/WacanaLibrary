@@ -27,12 +27,10 @@ public class Anggotamaincontroller {
 
     @FXML
     public void initialize() {
-        // Tarik nama dari AnggotaSession
         String nama = AnggotaSession.getNamaAnggota();
         if (nama != null && !nama.isEmpty()) {
             lblNamaAnggota.setText("Halo, " + nama + "!");
         }
-        // Default tampilkan dashboard
         showDashboard();
     }
 
@@ -56,7 +54,6 @@ public class Anggotamaincontroller {
 
     @FXML
     private void handleKeluar() {
-        // Bersihkan data session anggota sebelum menutup aplikasi
         AnggotaSession.clear();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
@@ -67,7 +64,6 @@ public class Anggotamaincontroller {
             loginStage.setScene(new Scene(root));
             loginStage.show();
 
-            // Tutup jendela portal anggota saat ini
             Stage current = (Stage) contentArea.getScene().getWindow();
             current.close();
 
@@ -76,7 +72,7 @@ public class Anggotamaincontroller {
         }
     }
 
-    // ── Helpers ──────────────────────────────────────────────────
+    // Helpers
 
     private void muatHalaman(String fxmlPath) {
         try {
@@ -88,7 +84,6 @@ public class Anggotamaincontroller {
         }
     }
 
-    /** Ubah style tombol sidebar: aktif vs nonaktif */
     private void setAktif(Button aktif) {
         btnDashboard.setStyle(STYLE_NONAKTIF);
         btnKatalog.setStyle(STYLE_NONAKTIF);

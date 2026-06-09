@@ -52,15 +52,15 @@ public class AnggotaKatalogController {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     bukuList.add(new String[]{
-                            rs.getString("idBuku"),      // 0
-                            rs.getString("isbn"),        // 1
-                            rs.getString("judul"),       // 2
-                            rs.getString("pengarang"),   // 3
-                            rs.getString("kategori"),    // 4
-                            String.valueOf(rs.getInt("tahunTerbit")), // 5
-                            String.valueOf(rs.getInt("halaman")),     // 6
-                            rs.getString("gambar"),      // 7
-                            rs.getString("status")       // 8
+                            rs.getString("idBuku"),
+                            rs.getString("isbn"),
+                            rs.getString("judul"),
+                            rs.getString("pengarang"),
+                            rs.getString("kategori"),
+                            String.valueOf(rs.getInt("tahunTerbit")),
+                            String.valueOf(rs.getInt("halaman")),
+                            rs.getString("gambar"),
+                            rs.getString("status")
                     });
                 }
             }
@@ -82,7 +82,6 @@ public class AnggotaKatalogController {
         String gambarPath  = buku[7];
         String dbStatus    = buku[8];
 
-        // LOGIKA PENYEDERHANAAN STATUS UNTUK ANGGOTA
         boolean tersedia = "Tersedia".equalsIgnoreCase(dbStatus);
         String labelStatusTampil = tersedia ? "Tersedia" : "Tidak Tersedia";
 
@@ -96,7 +95,6 @@ public class AnggotaKatalogController {
         cover.setMinHeight(250);
         cover.setStyle("-fx-background-color: " + coverColor(kategori) + "; -fx-background-radius: 10 10 0 0;");
 
-        // PROSES RENDER GAMBAR
         if (gambarPath != null && !gambarPath.trim().isEmpty()) {
             File imgFile = new File(gambarPath);
             if (imgFile.exists()) {
@@ -117,8 +115,6 @@ public class AnggotaKatalogController {
                 cover.getChildren().add(imgRegion);
             }
         }
-
-        // LENCANA (BADGE) DI KANAN ATAS SUDAH DIHAPUS SEPENUHNYA
 
         VBox info = new VBox(4);
         info.setPadding(new Insets(10, 12, 12, 12));

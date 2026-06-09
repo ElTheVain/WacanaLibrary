@@ -26,7 +26,6 @@ public class Anggotariwayatcontroller {
 
     @FXML
     public void initialize() {
-        // Setup kolom
         colIdTransaksi.setCellValueFactory(d -> new SimpleStringProperty(d.getValue().get(0)));
         colJudulBuku  .setCellValueFactory(d -> new SimpleStringProperty(d.getValue().get(1)));
         colTglPinjam  .setCellValueFactory(d -> new SimpleStringProperty(d.getValue().get(2)));
@@ -35,7 +34,6 @@ public class Anggotariwayatcontroller {
         colDenda      .setCellValueFactory(d -> new SimpleStringProperty(d.getValue().get(5)));
         colStatusTrx  .setCellValueFactory(d -> new SimpleStringProperty(d.getValue().get(6)));
 
-        // Isi filter dropdown
         filterStatus.setItems(FXCollections.observableArrayList(
                 "Semua Status", "Dipinjam", "Selesai", "Terlambat"
         ));
@@ -55,7 +53,6 @@ public class Anggotariwayatcontroller {
 
         ObservableList<ObservableList<String>> rows = FXCollections.observableArrayList();
 
-        // Query ambil semua transaksi anggota ini beserta judul buku
         String query =
                 "SELECT t.idTransaksi, b.judul, t.tanggalPinjam, t.tanggalJatuhTempo, " +
                         "       t.tanggalKembali, t.totalDenda, t.statusTransaksi " +
@@ -75,7 +72,6 @@ public class Anggotariwayatcontroller {
                     String kembali = rs.getString("tanggalKembali");
                     double denda   = rs.getDouble("totalDenda");
 
-                    // Filter berdasarkan pilihan dropdown
                     if (!filter.equals("Semua Status") && !status.equalsIgnoreCase(filter)) {
                         continue;
                     }

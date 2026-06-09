@@ -24,7 +24,6 @@ public class FormBukuController {
 
     @FXML
     public void initialize() {
-        // PERBAIKAN: Disinkronkan dengan kategori pada HomepageController
         cbKategori.setItems(FXCollections.observableArrayList(
                 "Karya Umum / Referensi",
                 "Ilmu Murni / Sains",

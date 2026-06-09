@@ -22,7 +22,6 @@ public class Transaksi {
         this.metodePembayaran = new SimpleStringProperty(metodePembayaran);
     }
 
-    // 1. Getter untuk Property (Wajib agar JavaFX TableView bisa otomatis menarik data)
     public StringProperty idTransaksiProperty() { return idTransaksi; }
     public StringProperty idAnggotaProperty() { return idAnggota; }
     public StringProperty idBukuProperty() { return idBuku; }
@@ -31,7 +30,6 @@ public class Transaksi {
     public StringProperty statusTransaksiProperty() { return statusTransaksi; }
     public StringProperty metodePembayaranProperty() { return metodePembayaran; }
 
-    // 2. Getter Standar (Wajib untuk fitur pencarian / perbandingan string biasa)
     public String getIdTransaksi() { return idTransaksi.get(); }
     public String getIdAnggota() { return idAnggota.get(); }
     public String getIdBuku() { return idBuku.get(); }

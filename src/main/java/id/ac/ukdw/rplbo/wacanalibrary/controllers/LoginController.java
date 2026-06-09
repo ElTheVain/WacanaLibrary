@@ -29,13 +29,13 @@ public class LoginController {
             return;
         }
 
-        // 1. Validasi Admin (Langsung masuk tanpa session)
+        // 1. Validasi Admin
         if (validasiAdmin(inputId, password)) {
             bukaDashboard("/fxml/MainLayout.fxml", "Wacana Library - Dashboard Operasional");
             return;
         }
 
-        // 2. Validasi Anggota berdasarkan NIM
+        // 2. Validasi Anggota berdasarkan NIM/NIDN/NIS
         if (validasiAnggota(inputId, password)) {
             bukaDashboard("/fxml/AnggotaMainLayout.fxml", "Wacana Library - Portal Anggota");
             return;
@@ -60,7 +60,6 @@ public class LoginController {
     }
 
     private boolean validasiAnggota(String inputId, String password) {
-        // Hapus "OR username = ?" menjadi hanya cek NIM
         String query = "SELECT idAnggota, namaLengkap, status FROM Anggota WHERE nim = ? AND password = ?";
         try (Connection conn = DatabaseHelper.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {

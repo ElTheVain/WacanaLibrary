@@ -5,7 +5,6 @@ public class Anggota {
     private final StringProperty idAnggota, nim, namaLengkap, tipe, aktifSejak, status;
     private final IntegerProperty batasPinjam;
 
-    // Constructor kini hanya menerima 7 parameter (tanpa username)
     public Anggota(String id, String nim, String nama, String tipe, int batas, String aktifSejak, String status) {
         this.idAnggota = new SimpleStringProperty(id);
         this.nim = new SimpleStringProperty(nim != null ? nim : "-");

@@ -79,7 +79,6 @@ public class FormPengembalianController {
     }
 
     private void muatDetailDariDB(String idAnggota, String idBuku) {
-        // Bebas dari SQL! Cukup panggil fungsi DAO
         Anggota anggota = anggotaDao.getAnggotaById(idAnggota);
         if (anggota != null) {
             lblNamaAnggota.setText(anggota.namaLengkapProperty().get());

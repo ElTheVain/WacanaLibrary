@@ -27,12 +27,10 @@ public class FormAnggotaController {
         cbStatus.setValue("Aktif");
     }
 
-    // Fungsi baru ini akan dipanggil oleh AnggotaController saat tombol Edit ditekan
     public void setEditData(Anggota anggota) {
         this.isEditMode = true;
         this.idAnggotaEdit = anggota.idAnggotaProperty().get();
 
-        // Isi textfield dan combobox dengan data yang sudah ada
         txtNama.setText(anggota.namaLengkapProperty().get());
         cbTipe.setValue(anggota.tipeProperty().get());
         cbStatus.setValue(anggota.statusProperty().get());
@@ -48,7 +46,6 @@ public class FormAnggotaController {
             PreparedStatement pstmt;
 
             if (isEditMode) {
-                // Kueri UPDATE untuk mode Edit
                 String query = "UPDATE Anggota SET namaLengkap = ?, tipe = ?, batasPinjam = ?, status = ? WHERE idAnggota = ?";
                 pstmt = conn.prepareStatement(query);
                 pstmt.setString(1, txtNama.getText());
@@ -57,7 +54,6 @@ public class FormAnggotaController {
                 pstmt.setString(4, cbStatus.getValue());
                 pstmt.setString(5, idAnggotaEdit);
             } else {
-                // Kueri INSERT untuk mode Tambah Baru
                 String idAnggota = "LIB-" + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
                 String tanggalSekarang = java.time.LocalDate.now().toString();
 

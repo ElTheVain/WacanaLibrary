@@ -52,7 +52,7 @@ public class AnggotaDashboardController {
         }
     }
 
-    // Mengambil data NIM dan langsung menampilkannya berupa angka saja
+    // Mengambil dan Menampilkan NIM
     private void muatDataNIM(String idAnggota) {
         String query = "SELECT nim FROM Anggota WHERE idAnggota = ?";
         try (Connection conn = DatabaseHelper.getConnection();
@@ -62,7 +62,6 @@ public class AnggotaDashboardController {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     String nim = rs.getString("nim");
-                    // PERBAIKAN: Langsung set text dengan variabel nim tanpa prefix kata-kata
                     lblNim.setText(nim != null && !nim.isEmpty() ? nim : "-");
                 }
             }

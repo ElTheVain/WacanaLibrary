@@ -11,6 +11,5 @@ public interface AnggotaDao {
     void hapusAnggota(String idAnggota);
     List<Anggota> cariAnggota(String keyword);
 
-    // PASTIKAN BARIS INI ADA
     void tambahBatasPinjam(String idAnggota, int jumlahPenambahan);
 }

@@ -52,7 +52,6 @@ public class HomepageController {
                     muatBuku(searchField.getText().trim(), activeKategori);
                 });
             } catch (Exception e) {
-                // Mengabaikan potensi null jika scene ditutup terlalu cepat
             }
         });
     }

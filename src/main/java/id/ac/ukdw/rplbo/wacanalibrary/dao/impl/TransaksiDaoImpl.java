@@ -45,7 +45,6 @@ public class TransaksiDaoImpl implements TransaksiDao {
         return list;
     }
 
-    // INI ADALAH METHOD YANG KURANG/SALAH SEBELUMNYA SEHINGGA MUNCUL ERROR MERAH
     @Override
     public void prosesPengembalian(String idTransaksi, String status, String tglKembali, double totalDenda, String metodePembayaran) {
         String query = "UPDATE Transaksi SET statusTransaksi = ?, tanggalKembali = ?, totalDenda = ?, metodePembayaran = ? WHERE idTransaksi = ?";

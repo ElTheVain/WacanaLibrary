@@ -17,18 +17,16 @@ public class FormTransaksiController {
 
     @FXML private ComboBox<String> cbAnggota, cbBuku;
     @FXML private DatePicker dpTglPinjam;
-    @FXML private ListView<String> listKeranjang; // Komponen UI keranjang
+    @FXML private ListView<String> listKeranjang;
 
-    // Data sementara untuk menampung buku yang diplih
     private ObservableList<String> dataKeranjang = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
         loadDataComboBox();
         dpTglPinjam.setValue(LocalDate.now());
-        listKeranjang.setItems(dataKeranjang); // Hubungkan ListView dengan datanya
+        listKeranjang.setItems(dataKeranjang);
 
-        // PERBAIKAN: Menambahkan CellFactory untuk membuat penomoran otomatis
         listKeranjang.setCellFactory(lv -> new ListCell<String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -36,7 +34,6 @@ public class FormTransaksiController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    // getIndex() dimulai dari 0, jadi kita tambah 1 agar tampil dari angka 1
                     setText((getIndex() + 1) + ". " + item);
                 }
             }
@@ -60,26 +57,23 @@ public class FormTransaksiController {
 
     @FXML
     private void handleTambahKeKeranjang() {
-        // 1. Wajib pilih anggota dulu agar sistem bisa mengecek kuotanya
         if (cbAnggota.getValue() == null) {
             new Alert(Alert.AlertType.WARNING, "Silakan pilih Anggota terlebih dahulu untuk mengecek kuota peminjaman!").show();
             return;
         }
 
-        // 2. Wajib pilih buku
         String bukuTerpilih = cbBuku.getValue();
         if (bukuTerpilih == null) {
             new Alert(Alert.AlertType.WARNING, "Pilih buku terlebih dahulu dari daftar!").show();
             return;
         }
 
-        // 3. Cegah buku kembar di keranjang
         if (dataKeranjang.contains(bukuTerpilih)) {
             new Alert(Alert.AlertType.WARNING, "Buku ini sudah ada di keranjang!").show();
             return;
         }
 
-        // 4. CEK KUOTA PINJAM (Validasi Fail-Fast)
+        // CEK KUOTA PINJAM (Validasi Fail-Fast)
         String idAnggota = cbAnggota.getValue().split(" - ")[0];
         try (Connection conn = DatabaseHelper.getConnection();
              PreparedStatement pstCekKuota = conn.prepareStatement("SELECT batasPinjam FROM Anggota WHERE idAnggota = ?")) {
@@ -92,16 +86,15 @@ public class FormTransaksiController {
                 // Cek apakah jumlah buku di keranjang sudah mencapai atau melebihi batas
                 if (dataKeranjang.size() >= batasPinjam) {
                     new Alert(Alert.AlertType.ERROR, "Sisa kuota peminjaman anggota ini maksimal hanya " + batasPinjam + " buku.").showAndWait();
-                    return; // Hentikan fungsi, buku gagal masuk keranjang
+                    return;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        // 5. Jika lolos semua validasi di atas, masukkan buku ke keranjang
         dataKeranjang.add(bukuTerpilih);
-        cbBuku.setValue(null); // Kosongkan pilihan buku setelah berhasil ditambah
+        cbBuku.setValue(null);
     }
 
     @FXML
@@ -125,23 +118,18 @@ public class FormTransaksiController {
 
         try (Connection conn = DatabaseHelper.getConnection()) {
 
-            // Matikan AutoCommit agar jika salah satu gagal, semuanya batal (Transaksi Aman)
             conn.setAutoCommit(false);
 
-            // 1. Buat 1 ID Transaksi Induk
+            // ID Transaksi Induk
             String idTransaksi = "TRX-" + UUID.randomUUID().toString().substring(0, 5).toUpperCase();
 
-            // PERBAIKAN 1: Set ke nilai terendah (3), agar buku yang lebih tebal bisa menaikkan durasinya
             int maxDurasi = 3;
 
-            // 2. LOOPING BUKU DI KERANJANG
             for (String itemBuku : dataKeranjang) {
 
-                // PERBAIKAN 2: Data asli di dalam memori tetap utuh ("B-E1D7 - Matahari").
-                // Nomor urut hanyalah ilusi visual, jadi kita bisa langsung split seperti biasa!
                 String idBuku = itemBuku.split(" - ")[0];
 
-                // Cek ketebalan untuk buku ini
+                // Cek ketebalan buku
                 PreparedStatement pstCekBuku = conn.prepareStatement("SELECT halaman FROM Buku WHERE idBuku = ?");
                 pstCekBuku.setString(1, idBuku);
 
@@ -177,7 +165,7 @@ public class FormTransaksiController {
                 pstBuku.executeUpdate();
             }
 
-            // 3. Catat Transaksi Induk
+            // 3. Catat Transaksi
             LocalDate jatuhTempo = tglPinjam.plusDays(maxDurasi);
             String sqlTrx = "INSERT INTO Transaksi (idTransaksi, idAnggota, idPegawai, tanggalPinjam, tanggalJatuhTempo, statusTransaksi, totalDenda, metodePembayaran) VALUES (?, ?, 'PEG-001', ?, ?, 'Berjalan', 0, '-')";
             PreparedStatement pstTrx = conn.prepareStatement(sqlTrx);
@@ -193,7 +181,7 @@ public class FormTransaksiController {
             pstUpdateAnggota.setString(2, idAnggota);
             pstUpdateAnggota.executeUpdate();
 
-            conn.commit(); // Simpan semua perubahan permanen
+            conn.commit();
             tutupJendela();
 
         } catch (Exception e) {
