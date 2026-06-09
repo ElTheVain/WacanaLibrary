@@ -55,6 +55,14 @@ public class AnggotaController {
             }
         });
 
+        // Disable visual selection highlight and clear selection
+        tabelAnggota.setStyle("-fx-selection-bar: transparent; -fx-selection-bar-text: -fx-text-background-color;");
+        tabelAnggota.getSelectionModel().selectedIndexProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.intValue() != -1) {
+                javafx.application.Platform.runLater(() -> tabelAnggota.getSelectionModel().clearSelection());
+            }
+        });
+
         loadData();
         setupPencarianDinamis();
         setupKolomOperasi();

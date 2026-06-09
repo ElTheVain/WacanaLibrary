@@ -85,8 +85,8 @@ public class HomepageController {
     }
 
     private void setActiveChip(Button active) {
-        String inactiveStyle = "-fx-background-color: white; -fx-text-fill: #64748B; -fx-border-color: #CBD5E1; -fx-border-radius: 999; -fx-background-radius: 999; -fx-font-size: 13; -fx-padding: 8 20; -fx-cursor: hand;";
-        String activeStyle = "-fx-background-color: #185FA5; -fx-text-fill: white; -fx-background-radius: 999; -fx-font-size: 13; -fx-padding: 8 20; -fx-cursor: hand;";
+        String inactiveStyle = "-fx-background-color: white; -fx-text-fill: #64748B; -fx-border-color: #CBD5E1; -fx-border-radius: 999; -fx-background-radius: 999; -fx-font-size: 13; -fx-padding: 8 20; -fx-cursor: none;";
+        String activeStyle = "-fx-background-color: #185FA5; -fx-text-fill: white; -fx-background-radius: 999; -fx-font-size: 13; -fx-padding: 8 20; -fx-cursor: none;";
 
         List<Button> chips = List.of(chipSemua, chipSastra, chipSains, chipTeknologi, chipSejarah, chipBahasa);
         for (Button chip : chips) {
@@ -172,7 +172,7 @@ public class HomepageController {
         VBox card = new VBox(0);
         card.setPrefWidth(175);
         card.setMaxWidth(175);
-        card.setStyle("-fx-background-color: white; -fx-border-color: #E2E8F0; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 6, 0, 0, 2);");
+        card.setStyle("-fx-background-color: white; -fx-border-color: #E2E8F0; -fx-border-radius: 10; -fx-background-radius: 10; -fx-cursor: none; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 6, 0, 0, 2);");
 
         StackPane cover = new StackPane();
         cover.setPrefHeight(250);

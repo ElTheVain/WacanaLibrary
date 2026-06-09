@@ -68,6 +68,14 @@ public class TransaksiController {
             }
         });
 
+        // Disable visual selection highlight and clear selection
+        tabelTransaksi.setStyle("-fx-selection-bar: transparent; -fx-selection-bar-text: -fx-text-background-color;");
+        tabelTransaksi.getSelectionModel().selectedIndexProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.intValue() != -1) {
+                javafx.application.Platform.runLater(() -> tabelTransaksi.getSelectionModel().clearSelection());
+            }
+        });
+
         loadData();
         setupPencarianDinamis();
         setupKolomOperasi();

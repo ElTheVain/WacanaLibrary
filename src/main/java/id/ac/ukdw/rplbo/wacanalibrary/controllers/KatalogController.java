@@ -83,6 +83,15 @@ public class KatalogController {
                 else if (item.getStatus().equalsIgnoreCase("Rusak")) setStyle("-fx-background-color: #ffcccc;");
                 else if (item.getStatus().equalsIgnoreCase("Dipinjam")) setStyle("-fx-background-color: #fff3cd;");
                 else setStyle("-fx-background-color: #d4edda;");
+
+            }
+        });
+
+        // Disable visual selection highlight and clear selection
+        tabelBuku.setStyle("-fx-selection-bar: transparent; -fx-selection-bar-text: -fx-text-background-color;");
+        tabelBuku.getSelectionModel().selectedIndexProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.intValue() != -1) {
+                javafx.application.Platform.runLater(() -> tabelBuku.getSelectionModel().clearSelection());
             }
         });
 
